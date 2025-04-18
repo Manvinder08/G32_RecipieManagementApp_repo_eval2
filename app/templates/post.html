@@ -1,0 +1,138 @@
+<!-- profile.html -->
+{% extends 'base.html' %}
+
+
+{% block title_block %}Profile Page{% endblock %}
+
+
+{% block css_block %}
+<style>
+
+    body{
+        padding-bottom: 60px;
+    }
+.main{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: Montserrat;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.center{
+ background-color: rgb(216, 216, 216);   
+ width: 50%;
+ border-radius: 10px;
+ display: flex;
+ align-items: center;
+ flex-direction: column;
+ padding:0px 30px;
+ padding-bottom: 40px;
+ margin-top: 10px;
+}
+
+.mainheading{
+    text-align: center;
+    font-size: 40px;
+    font-weight: 600;
+    margin-top: 40px;
+
+    margin-bottom: 10px;
+    
+}
+
+.inputsec{
+    width: 100%;
+    margin-bottom: 0px;
+    margin-top: 30px;
+
+}
+.secheading{
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.inputs{
+    border:0px;
+    font-size: 22px;
+    margin-top: 3px;
+    padding:3px 6px;
+    width: 98.5%;
+    box-shadow: inset 1px 1px 5px rgba(80, 80, 80, 0.397);
+    border-radius: 3px;
+}
+.postbtn{
+    margin-top: 30px;
+    width: 100%;
+    font-size: 25px;
+    border:0px;
+    padding:6px 0px;
+    border-radius: 4px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.postbtn:hover{
+    background-color: rgb(56, 56, 56);
+
+}
+.postbtn:active{
+    background-color: rgb(41, 41, 41);
+
+}
+
+
+</style>
+{%endblock%}
+
+
+{% block main_block %}
+<div class="main">
+
+    <div class="center">
+        <div class="mainheading">Post Recipie</div>
+     <form  method="POST">
+
+        {% csrf_token %}
+
+        <div class="inputsec">
+            <div class="secheading">Title:</div>
+            <input type="text" name="title" id="title" class="inputs" required>
+        </div>
+
+        <div class="inputsec">
+            <div class="secheading">Img Url:</div>
+            <input type="text" name="image" id="image" class="inputs" required>
+        </div>
+        <div class="inputsec">
+            <div class="secheading">Overview</div>
+            <textarea  rows="6" name="overview" id="overview" type="text" class="inputs" required></textarea>
+        </div>
+
+        <div class="inputsec">
+            <div class="secheading">Ingredients(With Comma Seprated)</div>
+            <input type="text" name="ingredients" id="ingredients" class="inputs" placeholder="Peas,Rice,Carrots" required>
+        </div>
+
+        <div class="inputsec">
+            <div class="secheading">Time to Prepare</div>
+            <input type="text" name="time" id="time" class="inputs" placeholder="10 Mins" required>
+        </div>
+
+        <div class="inputsec">
+            <div class="secheading">Full Process</div>
+            <textarea rows="7" name="process" id="process" type="text" class="inputs" required></textarea>
+        </div>
+
+        <Button type="submit" class="postbtn">POST</Button>
+
+    </form>
+
+    </div>
+
+
+</div>
+{% endblock %}
+

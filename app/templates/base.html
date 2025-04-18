@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title_block %} {% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Liter&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+
+    {% block css_block %}{% endblock %}
+    <style>
+        *:focus{
+            outline: none;
+        }
+        .alert{
+            font-family: Montserrat;
+            background-color: green;
+            margin-bottom: 10px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 4px;
+            font-size: 23px;
+            font-weight: 600;
+            color: white;
+            animation:slidein 0.3s  ease-in-out forwards;
+            transform: translateX(-100%);
+        }
+
+        @keyframes slidein {
+            from {
+                transform: translateX(100%);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .btn-close{
+            background-color: transparent;
+            border-radius: 100px;
+            cursor: pointer;
+            border:0px;
+            font-size: 10px;
+            width: 30px;
+            margin-left: 30px;
+        }
+        .btn-close:hover{
+            background-color: rgba(240, 248, 255, 0.3);
+        }
+        .toprightbox{
+            position: absolute;
+            top:10px;
+            right:5px;
+        }
+    </style>
+
+</head>
+<body>
+   {%block headerelement%}{%endblock%} 
+    <main class="bg-success overflow-auto">
+
+
+        <div class="toprightbox">
+
+<!--         
+        <div class="alert">
+            
+             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="size-6 btn-close">
+                 <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+               </svg>
+               
+         </div> -->
+
+
+    {% if error %}
+    <div class="alert">
+        {{ error }}
+
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="size-6 btn-close">
+            <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
+    </div>
+    {% endif %}
+
+
+
+
+    </div>
+
+
+
+
+        {% block main_block %}
+
+
+
+
+        {% endblock %}
+
+
+
+
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".btn-close").forEach(button => {
+                button.addEventListener("click", function () {
+                    this.parentElement.style.display = "none"; // Hides the alert
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
